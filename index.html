@@ -38,9 +38,73 @@
             cursor: move;
         }
 
+        .task:hover {
+            background: #e9e9e9;
+        }
+
         #calendar {
             flex: 1;
             padding: 20px;
+        }
+
+        #eventList {
+            width: 300px;
+            padding: 20px;
+            background: #f4f4f4;
+            border-left: 1px solid #ccc;
+            overflow-y: auto;
+            display: none;
+        }
+
+        #eventList h2 {
+            margin-top: 0;
+        }
+
+        .event-item {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .event-item button {
+            margin-left: 10px;
+        }
+
+        #editDialog {
+            display: none;
+        }
+
+        label, input, select {
+            display: block;
+            margin: 10px 0;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        #toggleEventList {
+            margin-top: 20px;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+
+        #newTaskButton {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #newTaskButton:hover {
+            background: #0056b3;
         }
     </style>
 </head>
@@ -48,15 +112,36 @@
 
     <div id="checklist">
         <h2>Checkliste</h2>
-        <div id="task-list">
-            <div class="task" data-task-id="1">Aufgabe 1</div>
-            <div class="task" data-task-id="2">Aufgabe 2</div>
-            <div class="task" data-task-id="3">Aufgabe 3</div>
-            <div class="task" data-task-id="4">Aufgabe 4</div>
-        </div>
+        <button id="newTaskButton">Neue Aufgabe</button>
+        <div id="task-list"></div>
+        <div id="toggleEventList">Termine anzeigen</div>
     </div>
 
     <div id="calendar"></div>
+
+    <div id="eventList">
+        <h2>Termine</h2>
+        <div id="event-list-content"></div>
+    </div>
+
+    <!-- Bearbeitungsdialog -->
+    <div id="editDialog" title="Aufgabe erstellen/bearbeiten">
+        <form id="editForm">
+            <label for="taskTitle">Titel:</label>
+            <input type="text" id="taskTitle" name="taskTitle">
+
+            <label for="taskDate">Datum:</label>
+            <input type="date" id="taskDate" name="taskDate">
+
+            <label for="taskTime">Zeit:</label>
+            <input type="time" id="taskTime" name="taskTime">
+
+            <label for="taskDuration">Dauer (in Stunden):</label>
+            <input type="number" id="taskDuration" name="taskDuration" value="1" min="0.5" step="0.5">
+
+            <input type="hidden" id="taskId" name="taskId">
+        </form>
+    </div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
