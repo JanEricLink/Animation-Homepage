@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeboxing Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Aufgaben</h2>
+            <h3>Geplante Aufgaben</h3>
+            <ul id="plannedTasks" class="task-list"></ul>
+            <h3>Ungeplante Aufgaben</h3>
+            <ul id="unplannedTasks" class="task-list"></ul>
+            <button class="button" onclick="showModal()">Aufgabe hinzufügen</button>
+        </aside>
+        <main class="calendar">
+            <h2>Kalender</h2>
+            <div id="calendar"></div>
+        </main>
+    </div>
+
+    <div id="taskModal" class="modal">
+        <h2>Aufgabe erstellen/aktualisieren</h2>
+        <label for="title">Titel:</label>
+        <input type="text" id="title" placeholder="Titel der Aufgabe">
+        <label for="date">Datum:</label>
+        <input type="date" id="date">
+        <label for="time">Uhrzeit:</label>
+        <input type="time" id="time">
+        <label for="duration">Dauer (Minuten):</label>
+        <input type="number" id="duration">
+        <label for="description">Beschreibung:</label>
+        <textarea id="description" rows="4" placeholder="Beschreibung der Aufgabe"></textarea>
+        <div class="modal-buttons">
+            <button id="saveButton">Speichern</button>
+            <button onclick="hideModal()">Abbrechen</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
