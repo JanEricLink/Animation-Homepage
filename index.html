@@ -1,50 +1,164 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeboxing Application</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.0/main.min.css">
-</head>
-<body>
-    <div class="container">
-        <aside class="sidebar">
-            <h2>Aufgaben</h2>
-            <h3>Geplante Aufgaben</h3>
-            <ul id="plannedTasks" class="task-list"></ul>
-            <h3>Ungeplante Aufgaben</h3>
-            <ul id="unplannedTasks" class="task-list"></ul>
-            <button class="button" onclick="showModal()">Aufgabe hinzufügen</button>
-        </aside>
-        <main class="calendar">
-            <h2>Kalender</h2>
-            <div id="calendar"></div>
-        </main>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timeboxing Tool</title>
+    <!-- FullCalendar CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css"
+    />
+    <!-- jQuery UI CSS -->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: row;
+          height: 100vh;
+      }
+
+      #checklist {
+          width: 300px;
+          padding: 20px;
+          background: #f4f4f4;
+          border-right: 1px solid #ccc;
+          overflow-y: auto;
+      }
+
+      #checklist h2 {
+          margin-top: 0;
+      }
+
+      .task {
+          background: #fff;
+          border: 1px solid #ccc;
+          padding: 10px;
+          margin-bottom: 10px;
+          cursor: move;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      .task:hover {
+          background: #e9e9e9;
+      }
+
+      #calendar {
+          flex: 1;
+          padding: 20px;
+      }
+
+      #editDialog {
+          display: none;
+      }
+
+      label, input, select {
+          display: block;
+          margin: 10px 0;
+      }
+
+      label {
+          font-weight: bold;
+      }
+
+      #newTaskButton {
+          display: block;
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          background: #007bff;
+          color: white;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+      }
+
+      #newTaskButton:hover {
+          background: #0056b3;
+      }
+
+      .editEvent, .deleteEvent {
+          margin-left: 10px;
+      }
+
+      .editEvent {
+          background-color: #007bff;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+      }
+
+      .editEvent:hover {
+          background-color: #0056b3;
+      }
+
+      .deleteEvent {
+          background-color: #dc3545;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+      }
+
+      .deleteEvent:hover {
+          background-color: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="checklist">
+      <h2>Aufgaben & Termine</h2>
+      <button id="newTaskButton">Neue Aufgabe</button>
+      <div id="task-list"></div>
     </div>
 
-    <div id="taskModal" class="modal">
-        <div class="modal-content">
-            <h2>Aufgabe erstellen/aktualisieren</h2>
-            <label for="title">Titel:</label>
-            <input type="text" id="title" placeholder="Titel der Aufgabe">
-            <label for="date">Datum:</label>
-            <input type="date" id="date">
-            <label for="time">Uhrzeit:</label>
-            <input type="time" id="time">
-            <label for="duration">Dauer (Minuten):</label>
-            <input type="number" id="duration">
-            <label for="description">Beschreibung:</label>
-            <textarea id="description" rows="4" placeholder="Beschreibung der Aufgabe"></textarea>
-            <div class="modal-buttons">
-                <button id="saveButton">Speichern</button>
-                <button onclick="hideModal()">Abbrechen</button>
-            </div>
-        </div>
+    <div id="calendar"></div>
+
+    <!-- Bearbeitungsdialog -->
+    <div id="editDialog" title="Aufgabe erstellen/bearbeiten">
+      <form id="editForm">
+        <label for="taskTitle">Titel:</label>
+        <input type="text" id="taskTitle" name="taskTitle" />
+
+        <label for="taskDate">Datum:</label>
+        <input type="date" id="taskDate" name="taskDate" />
+
+        <label for="taskTime">Zeit:</label>
+        <input type="time" id="taskTime" name="taskTime" />
+
+        <label for="taskDuration">Dauer (in Stunden):</label>
+        <input
+          type="number"
+          id="taskDuration"
+          name="taskDuration"
+          value="1"
+          min="0.5"
+          step="0.5"
+        />
+
+        <input type="hidden" id="taskId" name="taskId" />
+      </form>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.0/main.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.0/locales/de.min.js"></script>
-    <script src="script.js"></script>
-</body>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- FullCalendar -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+  </body>
 </html>
