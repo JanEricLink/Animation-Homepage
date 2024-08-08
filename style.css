@@ -1,0 +1,70 @@
+:root {
+  --backgroundcolor: rgb(240, 240, 240);
+  --textcolor: rgb(29, 29, 29);
+  --primary: rgba(255, 235, 60, 0.7);
+  /*   --primarytrans: rgba(255, 235, 60, 0.5); */
+  /*   --primaryhard: rgba(255, 235, 60, 1); */
+  --debugbordersize: 0px;
+}
+
+html,
+body {
+  color: var(--textcolor);
+  background: var(--backgroundcolor);
+  font: 90% Roboto, Arial, sans-serif;
+  font-weight: 300;
+  border-radius: 5px;
+  border: var(--debugbordersize) solid red;
+}
+
+div#header {
+  padding: 10px;
+  margin: 30px 20px 50px 20px;
+  background: var(--primary);
+  font-size: 30px;
+  border-radius: 10px;
+}
+
+div#navbar {
+  margin: 0px 20px 20px 20px;
+  border-radius: 5px;
+  border: var(--debugbordersize) solid red;
+}
+
+h4 {
+  margin: 10px;
+  font-weight: 400;
+  font-size: 20px;
+  border-radius: 5px;
+  border: var(--debugbordersize) solid red;
+}
+
+ul {
+  list-style-type: none;
+  overflow: hidden;
+  margin: 10px;
+  border-radius: 5px;
+  border: var(--debugbordersize) solid red;
+}
+
+li {
+  float: left;
+  color: var(--textcolor);
+  text-align: center;
+  padding: 2px;
+  margin: 2px;
+  line-height: 1.4;
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+}
+
+li :hover {
+  border-radius: 5px;
+  background-color: var(--primary);
+}
+
+button {
+  border: 0px solid rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0);
+}
