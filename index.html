@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
-<?php 
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-header("Allow: GET, POST, OPTIONS, PUT, DELETE");
-
-// Dein PHP-Code hier
-echo json_encode(["message" => "CORS headers are set correctly"]);
-?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Animation Homepage</title>
@@ -28,50 +19,8 @@ echo json_encode(["message" => "CORS headers are set correctly"]);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
   </head>
   <body>
-    <div id="header">
-      Herzlich willkommen
-      <button
-        id="nModeButton"
-        type="button"
-        onclick="changeNightMode()"
-        style="font-size:25px; position: absolute; right: 40px"
-      >
-        🌙
-      </button>
-    </div>
-    <div id="navbar">
-      <h4>Animationen</h4>
-      <ul>
-        <li>
-          <button onclick="changeAnimationToTrig()">Trig Animation</button>
-        </li>
-        <li>
-          <button onclick="changeAnimationToWater()">Wasser Animation</button>
-        </li>
-        <li>
-          <button onclick="changeAnimationToSound()">Sound Animation</button>
-        </li>
-      </ul>
-    </div>
-    <iframe
-      id="animationFrame"
-      src="https://janericlink.github.io/Trig-Animation/"
-      title="Animation of Trigonometric Functions"
-      style="border: 1px dashed black"
-      width="100%"
-      height="400"
-    ></iframe>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- jQuery UI -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <!-- FullCalendar -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <!-- Custom JS -->
-    <script src="app.js"></script>
     
-    <script>
+        <script>
       let nMode = false;
       let root = document.styleSheets[1].cssRules[0];
       let iframe = document.getElementById("animationFrame");
@@ -107,6 +56,51 @@ echo json_encode(["message" => "CORS headers are set correctly"]);
         iframe.title = "Animation of a Sound Wave";
       }
     </script>
+    
+    <div id="header">
+      Herzlich willkommen
+      <button
+        id="nModeButton"
+        type="button"
+        onclick="changeNightMode()"
+        style="font-size:25px; position: absolute; right: 40px"
+      >
+        🌙
+      </button>
+    </div>
+    <div id="navbar">
+      <h4>Animationen</h4>
+      <ul>
+        <li>
+          <button onclick="changeAnimationToTrig()">Trig Animation</button>
+        </li>
+        <li>
+          <button onclick="changeAnimationToWater()">Wasser Animation</button>
+        </li>
+        <li>
+          <button onclick="changeAnimationToSound()">Sound Animation</button>
+        </li>
+      </ul>
+    </div>
+    <iframe
+      id="animationFrame"
+      src="https://janericlink.github.io/Water-Wave-Animation/"
+      title="Animation of a Water Wave"
+      style="border: 1px dashed black"
+      width="100%"
+      height="400"
+    ></iframe>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- FullCalendar -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+    
+
     
   </body>
 </html>

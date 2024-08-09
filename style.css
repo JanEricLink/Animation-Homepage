@@ -2,8 +2,6 @@
   --backgroundcolor: rgb(240, 240, 240);
   --textcolor: rgb(29, 29, 29);
   --primary: rgba(255, 235, 60, 0.7);
-  /*   --primarytrans: rgba(255, 235, 60, 0.5); */
-  /*   --primaryhard: rgba(255, 235, 60, 1); */
   --debugbordersize: 0px;
 }
 
@@ -39,7 +37,7 @@ h4 {
   border: var(--debugbordersize) solid red;
 }
 
-ul {
+ul {;
   list-style-type: none;
   overflow: hidden;
   margin: 10px;
@@ -49,7 +47,6 @@ ul {
 
 li {
   float: left;
-  color: var(--textcolor);
   text-align: center;
   padding: 2px;
   margin: 2px;
@@ -64,6 +61,7 @@ li :hover {
 }
 
 button {
+  color: var(--textcolor);
   border: 0px solid rgba(0, 0, 0, 0);
   border-radius: 5px;
   background: rgba(0, 0, 0, 0);
