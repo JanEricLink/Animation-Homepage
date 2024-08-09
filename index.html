@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
-    <?php 
+<?php 
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+
+// Dein PHP-Code hier
+echo json_encode(["message" => "CORS headers are set correctly"]);
 ?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
