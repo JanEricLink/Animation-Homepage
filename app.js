@@ -1,5 +1,5 @@
+let nMode = false;
 function changeNightMode() {
-  let nMode = false;
   let root = document.styleSheets[1].cssRules[0];
   if (nMode) {
     root.style.setProperty("--backgroundcolor", "rgb(240,240,240)");
